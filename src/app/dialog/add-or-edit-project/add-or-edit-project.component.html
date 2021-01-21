@@ -1,0 +1,63 @@
+<!-- Modal -->
+<div class="modal fade" id="modalAddProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 *ngIf="!editMode" class="modal-title text-center" >Dodaj projekt</h5>
+        <h5 *ngIf="editMode" class="modal-title text-center">Edytuj projekt</h5>
+        <button type="button" class="close" id="closeModalButton" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="projectForm" class="form-group">
+          <div class="form-group">
+            <label> Nazwa projektu:</label>
+            <input type="text" formControlName="nameProject" class="form-control" name="nameProject" placeholder="Wpisz nazwe projektu">
+            <div class="alert alert-warning mt-1" *ngIf="projectForm.get('nameProject').invalid && projectForm.get('nameProject').touched">
+              Błąd przy nazwie projektu
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label> Opis Projektu :</label>
+            <input type="text" formControlName="descriptionProject" class="form-control" name="descriptionProject" placeholder="Wpisz opis projektu">
+            <div class="alert alert-warning mt-1" *ngIf="projectForm.get('descriptionProject').invalid && projectForm.get('descriptionProject').touched">
+              Błąd przy opisie projektu
+            </div>
+          </div>
+          <div class="form-group">
+            <label> Data Rozpoczecia Projketu :</label>
+            <input type="date" formControlName="dataStart" [max]="projectForm.getRawValue().dataEnd" class="form-control" name="dataStart" placeholder="Wpisz date rozpoczecia projektu">
+            <div class="alert alert-warning mt-1" *ngIf="projectForm.get('dataStart').invalid && projectForm.get('dataStart').touched">
+              Błąd przy dacie rozpoczecia projektu
+            </div>
+          </div>
+          <div class="form-group">
+            <label> Data Zakonczenia Projektu :</label>
+            <input type="date" formControlName="dataEnd" [min]="projectForm.getRawValue().dataStart" class="form-control" name="dataEnd" placeholder="Wpisz date zakonczenia projektu">
+            <div class="alert alert-warning mt-1" *ngIf="projectForm.get('dataEnd').invalid && projectForm.get('dataEnd').touched">
+              Błąd przy dacie zakończenia projektu
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Czy aktywny:</label>
+            <select id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="active">
+              <option [ngValue]="null">Wybierz jedno...</option>
+              <option  [ngValue]="true">Tak</option>
+              <option  [ngValue]="false">Nie</option>
+            </select>
+            <div class="alert alert-warning mt-1" *ngIf="projectForm.get('active').invalid && projectForm.get('active').touched">
+              Bład przy "czy aktywny"
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Anuluj</button>
+        <button type="button" *ngIf="!editMode" [disabled]="projectForm.invalid" (click)="sendForm()" class="btn btn-danger ">Dodaj</button>
+        <button type="button" *ngIf="editMode" [disabled]="projectForm.invalid" (click)="sendForm()" class="btn btn-danger ">Edytuj</button>
+      </div>
+    </div>
+  </div>
+</div>

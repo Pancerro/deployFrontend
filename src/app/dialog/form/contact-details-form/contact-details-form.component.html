@@ -1,0 +1,87 @@
+<form [formGroup]="contactDetailsForm" (ngSubmit)="sendForm()" class="form-group">
+  <div class="form-group">
+    <label> Ulica :</label>
+    <input type="text" formControlName="street" class="form-control" name="street" placeholder="Wpisz swoja ulice">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('street').invalid && contactDetailsForm.get('street').touched">
+      Błąd przy nazwie ulicy
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Numer Domu :</label>
+    <input type="text" formControlName="houseNumber" class="form-control" name="houseNumber" placeholder="Wpisz numer domu">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('houseNumber').invalid && contactDetailsForm.get('houseNumber').touched">
+      Błąd przy numerze domu
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Miasto :</label>
+    <input type="text" formControlName="township" class="form-control" name="township" placeholder="Wpisz swoje miasto">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('township').invalid && contactDetailsForm.get('township').touched">
+      Błąd przy miasto
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Poczta :</label>
+    <input type="text" formControlName="postOffice" class="form-control" name="postOffice" placeholder="Wpisz swoją poczte">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('postOffice').invalid && contactDetailsForm.get('postOffice').touched">
+      Błąd przy poczcie
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Kod pocztowy :</label>
+    <input type="text" formControlName="postalCode" class="form-control" name="postalCode" placeholder="Wpisz swój kod pocztowy">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('postalCode').invalid && contactDetailsForm.get('postalCode').touched">
+      Błąd przy kodzie pocztowy
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Gmina :</label>
+    <input type="text" formControlName="community" class="form-control" name="community" placeholder="Wpisz swoją gmine">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('community').invalid && contactDetailsForm.get('community').touched">
+      Błąd przy gminie
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Powiat :</label>
+    <input type="text" formControlName="district" class="form-control" name="district" placeholder="Wpisz swoją powiat">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('district').invalid && contactDetailsForm.get('district').touched">
+      Bład przy powiacie
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Wojewodztwo :</label>
+    <select id="propertyVoivodeshipType" class="form-control form-control-xs" formControlName="voivodeship">
+      <option [ngValue]="null">Wybierz jedno...</option>
+      <option *ngFor="let voivodeship of enumVoivodeship | keyvalue" [ngValue]="voivodeship.value">{{voivodeship.value}}</option>
+    </select>
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('voivodeship').invalid && contactDetailsForm.get('voivodeship').touched">
+      Błąd przy województwo
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Obszar :</label>
+    <select id="propertyAreaType" class="form-control form-control-xs" formControlName="area">
+      <option [ngValue]="null">Wybierz jedno...</option>
+      <option *ngFor="let area of enumArea | keyvalue" [ngValue]="area.value">{{area.value}}</option>
+    </select>
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('area').invalid && contactDetailsForm.get('area').touched">
+      Błąd przy obszarze
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Numer Telefonu :</label>
+    <input type="text" formControlName="phoneNumber" class="form-control" name="phoneNumber" placeholder="Wpisz swoj numer telefonu">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('phoneNumber').invalid && contactDetailsForm.get('phoneNumber').touched">
+      Błąd przy numerze telefonu
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Email :</label>
+    <input type="email" formControlName="email" class="form-control" name="email" placeholder="Wpisz swoj email">
+    <div class="alert alert-warning mt-1" *ngIf="contactDetailsForm.get('email').invalid && contactDetailsForm.get('email').touched">
+      Błąd przy emailu
+    </div>
+  </div>
+  <button type="button" (click)="next()" [disabled]="contactDetailsForm.invalid" class="btn btn-danger mt-1 mb-1" >Dalej</button>
+  <button type="button" (click)="previous()" class="btn btn-danger mt-1 mb-1" >Cofnij</button>
+</form>

@@ -1,0 +1,117 @@
+
+<form [formGroup]="additionalInformationForm" class="form-group">
+  <div class="form-check">
+    <input class="form-check-input" formControlName="repeatYear" type="checkbox" [checked]="additionalInformationInput.repeatYear" id="repeatYear">
+    <label class="form-check-label" for="repeatYear">
+      Powtarzany rok
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" formControlName="studyingAnotherDirection" type="checkbox" [checked]="additionalInformationInput.studyingAnotherDirection" id="studyingAnotherDirection">
+    <label class="form-check-label" for="studyingAnotherDirection">
+       Studiowanie innego kierunku
+    </label>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
+    <label> Name University :</label>
+    <input type="text" formControlName="nameUniversity" class="form-control" name="nameUniversity" placeholder="Wpisz nazwe uczelni">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('nameUniversity').invalid && additionalInformationForm.get('nameUniversity').touched">
+      Błąd przy nazwie uczelni
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
+    <label>Wydział:</label>
+    <select  id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="department">
+      <option [ngValue]="null">Wybierz jedno...</option>
+      <option [ngValue]="'other'">Inny</option>
+      <option *ngFor="let department of departments" [ngValue]="department.nameDepartments">{{department?.shortcut}} - {{department?.nameDepartments}}</option>
+    </select>
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('department').invalid && additionalInformationForm.get('department').touched">
+      Błąd przy wydziele uczelni
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
+    <label>Kierunek studiów:</label>
+    <select id="propertyTypeFieldOfStudy" class="form-control form-control-xs" formControlName="fieldOfStudy">
+      <option [ngValue]="null">Select one...</option>
+      <option [ngValue]="'other'">Other</option>
+      <ng-container *ngFor="let field of courser">
+        <option *ngIf="field?.universityDepartments.nameDepartments == additionalInformationForm.get('department').value" [ngValue]="field.nameCourses">{{field?.nameCourses}} - {{field?.universityDepartments.nameDepartments}}</option>
+      </ng-container>
+    </select>
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('fieldOfStudy').invalid && additionalInformationForm.get('fieldOfStudy').touched">
+      Błąd przy kierunku studiów
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
+    <label> Specjalność :</label>
+    <input type="text" formControlName="profile" class="form-control" name="profile" placeholder="Wpisz swoją specjalność">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('profile').invalid && additionalInformationForm.get('profile').touched">
+      Błąd przy specjalności
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
+    <label> Rok Rozpoczecia Studiow :</label>
+    <input type="text" formControlName="yearStartStudy" class="form-control" name="yearStartStudy" placeholder="Rok Rozpoczecia Studiow">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('yearStartStudy').invalid && additionalInformationForm.get('yearStartStudy').touched">
+      Błąd przy Rok Rozpoczecia Studiow
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value"  class="form-group ml-3">
+    <label> Praktyki i rok rozpoczecia :</label>
+    <input type="text" formControlName="workPlacementAndYear" class="form-control" name="workPlacementAndYear" placeholder="Wpisz swoje praktyki i date ich rozpoczecia">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('workPlacementAndYear').invalid && additionalInformationForm.get('workPlacementAndYear').touched">
+      Błąd przy praktykach i roku rozpoczecia
+    </div>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" formControlName="studiedAnotherUniversity" type="checkbox" [checked]="additionalInformationInput.studiedAnotherUniversity" id="studiedAnotherUniversity">
+    <label class="form-check-label" for="studiedAnotherUniversity">
+      Studiowanie na innej uczelni
+    </label>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studiedAnotherUniversity').value" class="form-group ml-3">
+    <label> Nazwa innej uczelni :</label>
+    <input type="text" formControlName="nameUniversity" class="form-control" name="nameUniversity" placeholder="Wpisz nazwe innej uczelni">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('nameUniversity').invalid && additionalInformationForm.get('nameUniversity').touched">
+      Błąd przy nazwie innej uczelni
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studiedAnotherUniversity').value" class="form-group ml-3">
+    <label>  Nazwa Wydziału :</label>
+    <input type="text" formControlName="departmentAnother" class="form-control" name="departmentAnother" placeholder="Wpisz nazwe wydziału">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('departmentAnother').invalid && additionalInformationForm.get('departmentAnother').touched">
+      Błąd przy nazwie wydziału
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studiedAnotherUniversity').value" class="form-group ml-3">
+    <label> Nazwa Kierunku :</label>
+    <input type="text" formControlName="fieldOfStudyAnother" class="form-control" name="fieldOfStudyAnother" placeholder="Wpisz nazwe kierunku">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('fieldOfStudyAnother').invalid && additionalInformationForm.get('fieldOfStudyAnother').touched">
+      Błąd przy nazwie kierunku
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studiedAnotherUniversity').value" class="form-group ml-3">
+    <label> Specjalnosc :</label>
+    <input type="text" formControlName="profileAnother" class="form-control" name="profileAnother" placeholder="Wpisz swoja specjalność">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('profileAnother').invalid && additionalInformationForm.get('profileAnother').touched">
+      Błąd przy specjlaności
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studiedAnotherUniversity').value" class="form-group ml-3">
+    <label> Rok rozpoczecia studiowania:</label>
+    <input type="text" formControlName="yearStartAndEndStudyAnother" class="form-control" name="yearStartAndEndStudyAnother" placeholder="Wpisz rok rozpoczecia studiów">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('yearStartAndEndStudyAnother').invalid && additionalInformationForm.get('yearStartAndEndStudyAnother').touched">
+      Błąd przy roku rozpoczecia studiów
+    </div>
+  </div>
+  <div *ngIf="additionalInformationForm.get('studiedAnotherUniversity').value" class="form-group ml-3">
+    <label> Praktyki i rok rozpoczecia :</label>
+    <input type="text" formControlName="workPlacementAndYearAnother" class="form-control" name="workPlacementAndYearAnother" placeholder="Wpisz swoje praktyki i date ich rozpoczecia">
+    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('workPlacementAndYearAnother').invalid && additionalInformationForm.get('workPlacementAndYearAnother').touched">
+      Błąd przy praktykach i roku rozpoczecia
+    </div>
+  </div>
+  <button type="button" (click)="next()" [disabled]="additionalInformationForm.invalid" class="btn btn-danger mt-1 mb-1" >Dalej</button>
+  <button type="button" (click)="previous()" class="btn btn-danger mt-1 mb-1" >Cofnij</button>
+</form>

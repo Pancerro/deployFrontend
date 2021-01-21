@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="modalAddCourses" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 *ngIf="!editMode" class="modal-title text-center" >Dodaj kierunek</h5>
+        <h5 *ngIf="editMode" class="modal-title text-center">Edytuj kierunek</h5>
+        <button type="button" class="close" id="closeModalCoursesButton" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="coursesForm" class="form-group">
+          <div class="form-group">
+            <label> Nazwa kierunku :</label>
+            <input type="text" formControlName="nameCourses" class="form-control" name="nameCourses" placeholder="Wpisz nazwe kierunku">
+            <div class="alert alert-warning mt-1" *ngIf="coursesForm.get('nameCourses').invalid && coursesForm.get('nameCourses').touched">
+              Błąd przy nazwie kierunku
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Wydział:</label>
+            <select id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="universityDepartments">
+              <option [ngValue]="null">Wybierz jedno...</option>
+              <option *ngFor="let department of universityDepartments" [ngValue]="department.idDepartments">{{department?.shortcut}} - {{department?.nameDepartments}}</option>
+            </select>
+            <div class="alert alert-warning mt-1" *ngIf="coursesForm.get('universityDepartments').invalid && coursesForm.get('universityDepartments').touched">
+              Błąd przy wydziale
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Anuluj</button>
+        <button type="button" *ngIf="!editMode" [disabled]="coursesForm.invalid" (click)="sendForm()" class="btn btn-danger ">Dodaj</button>
+        <button type="button" *ngIf="editMode" [disabled]="coursesForm.invalid" (click)="sendForm()" class="btn btn-danger ">Edytuj</button>
+      </div>
+    </div>
+  </div>
+</div>
