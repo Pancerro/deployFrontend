@@ -52,7 +52,7 @@ export class ChangePasswordComponent implements OnInit {
     return password === confirmPassword ? null : { passwordNotMatch: true };
   }
 
-  private sendForm(): void {
+  public sendForm(): void {
     document.getElementById('closeModalButtonPassword').click();
     this.newPassword.emit(this.passwordForm.getRawValue());
   }

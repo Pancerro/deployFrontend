@@ -17,7 +17,7 @@ export class AddOrEditMemberModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  private sendForm(): void {
+  public sendForm(): void {
     this.editMemberSubject.next();
     document.getElementById('closeModalCoursesButton').click();
     this.newMember.emit();

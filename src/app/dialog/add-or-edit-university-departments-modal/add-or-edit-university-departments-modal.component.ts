@@ -20,7 +20,7 @@ export class AddOrEditUniversityDepartmentsModalComponent implements OnInit, OnC
   ngOnChanges(changes: SimpleChanges) {
     this.setDepartmentForm();
   }
-  private sendForm(): void {
+  public sendForm(): void {
     document.getElementById('closeModalButton').click();
     this.newDepartment.emit(this.departmentsForm.getRawValue());
   }

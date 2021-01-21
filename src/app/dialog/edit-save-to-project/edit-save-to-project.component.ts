@@ -21,7 +21,7 @@ export class EditSaveToProjectComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.setSaveMemberToProject();
   }
-  private sendForm(): void {
+  public sendForm(): void {
       const editValue: SaveMemberToProject = {
         idSave: this.saveMemberToProject.idSave,
         member: this.saveMemberToProject.member,

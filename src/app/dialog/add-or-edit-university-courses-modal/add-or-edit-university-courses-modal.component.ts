@@ -30,7 +30,7 @@ export class AddOrEditUniversityCoursesModalComponent implements OnInit, OnChang
     });
   }
 
-  private sendForm(): void {
+  public sendForm(): void {
     document.getElementById('closeModalCoursesButton').click();
     this.newCourses.emit(this.coursesForm.getRawValue());
   }

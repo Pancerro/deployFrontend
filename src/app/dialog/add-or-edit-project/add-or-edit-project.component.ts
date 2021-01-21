@@ -20,7 +20,7 @@ export class AddOrEditProjectComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.setProjectForm();
   }
-  private sendForm(): void {
+  public sendForm(): void {
     const dataStart = new Date(this.projectForm.getRawValue().dataStart);
     const dataEnd = new Date(this.projectForm.getRawValue().dataEnd);
     if (dataStart.getTime() > dataEnd.getTime() && dataEnd.getTime() < dataStart.getTime()){
