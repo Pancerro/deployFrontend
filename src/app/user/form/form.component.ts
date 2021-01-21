@@ -24,11 +24,9 @@ export class FormComponent implements OnInit {
   public formIsSend = true;
   ngOnInit() {
     this.formService.getActiveProject().pipe(first()).subscribe((project: Project[]) => {
-      console.log(project);
         this.activeProject = project;
       });
     this.formService.getWebStarterDesc().pipe(first()).subscribe((webStarterDesc: WebStarterDesc) => {
-      console.log(webStarterDesc)
       this.webStarterDesc = webStarterDesc;
       this.loadingWebStarterDesc = true;
     }, err => {

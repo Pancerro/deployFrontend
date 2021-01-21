@@ -15,24 +15,24 @@ export class FormService {
   constructor(private http: HttpClient) { }
   private url = "https://ue-form-backend-app.herokuapp.com/";
   public sendForm(member: Member, idProject: number): Observable<any> {
-    const url = this.url+'member/form/' + idProject;
+    const url ='https://ue-form-backend-app.herokuapp.com/member/form/' + idProject;
     return this.http.post<any>(url, member, { observe: 'response'});
    }
 
   public getUniversityCourses(): Observable<UniversityCourses[]> {
-    const url = this.url+'member/university-courses';
+    const url ='https://ue-form-backend-app.herokuapp.com/member/university-courses';
     return this.http.get<UniversityCourses[]>(url);
   }
   public getUniversityDepartments(): Observable<UniversityDepartments[]> {
-    const url = this.url+'member/university-departments';
+    const url ='https://ue-form-backend-app.herokuapp.com/member/university-departments';
     return this.http.get<UniversityDepartments[]>(url);
   }
   public getActiveProject(): Observable<Project[]> {
-    const url = this.url+'member/active-project';
+    const url ='https://ue-form-backend-app.herokuapp.com/member/active-project';
     return this.http.get<Project[]>(url);
   }
   public getWebStarterDesc(): Observable<WebStarterDesc> {
-    const url = this.url+'member/get-web-starter';
+    const url ='https://ue-form-backend-app.herokuapp.com/member/get-web-starter';
     return this.http.get<WebStarterDesc>(url);
   }
 }
