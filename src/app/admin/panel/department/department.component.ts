@@ -182,6 +182,8 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
   public addOrEditCourses(newCourses: UniversityCourses): void {
     // tslint:disable-next-line:max-line-length
+    console.log(newCourses.universityDepartments)
+    console.log(this.universityDepartments.filter((department) => department.idDepartments === newCourses.universityDepartments)[0]);
     newCourses.universityDepartments = this.universityDepartments.filter((department) => department.idDepartments === newCourses.universityDepartments)[0];
     if (this.editModeUniversityCourses) {
       this.adminService.editUniversityCourses(newCourses).subscribe(() => {
