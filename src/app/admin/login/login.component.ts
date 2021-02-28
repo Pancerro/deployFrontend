@@ -10,7 +10,7 @@ import { AuthenticationService } from './login-service/auth/auth.service';
 export class LoginComponent implements OnInit {
 
   username: string;
-  password : string;
+  password: string;
   errorMessage = 'Invalid Credentials';
   successMessage: string;
   invalidLogin = false;
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    this.authenticationService.authenticationService(this.username, this.password).subscribe((result)=> {
+    this.authenticationService.authenticationService(this.username, this.password).subscribe((result) => {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';

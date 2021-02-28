@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  // BASE_PATH: 'http://localhost:8080'
+  //  'http://localhost:8080/admin/basicauth';
+  // `https://ue-form-backend-app.herokuapp.com/admin/basicauth`
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
   USER_PASSWORD_SESSION_ATTRIBUTE_PASSWORD = 'authenticatedPassword';
-
   public username: string;
   public password: string;
   constructor(private http: HttpClient) {
@@ -19,7 +19,7 @@ export class AuthenticationService {
   }
 
   authenticationService(username: string, password: string) {
-    return this.http.get(`https://ue-form-backend-app.herokuapp.com/admin/basicauth`,
+    return this.http.get('http://localhost:8080/admin/basicauth',
       { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map(() => {
         this.username = username;
         this.password = password;
@@ -40,7 +40,6 @@ export class AuthenticationService {
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
     sessionStorage.removeItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_PASSWORD);
-
     this.username = null;
     this.password = null;
   }

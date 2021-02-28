@@ -6,149 +6,151 @@
     </button>
   </div>
   <h5 class="card-title" id="tableProject">Projekty: </h5>
-  <div *ngIf="!viewProject else loading" class="card-text table-responsive">
+  <div *ngIf="!viewProject else loading" class="card-text">
     <div class="mb-2">
       <div>
-        <button data-toggle="modal" data-target="#modalExportTable" class="btn btn-light btn-lg" type="button">
+        <button data-toggle="modal" data-target="#modalExportTable" class="btn btn-light btn-lg btn-mob" type="button">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
             <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
           </svg> Export
         </button>
 
-        <button type="button" (click)="addModeProject()" data-toggle="modal" data-target="#modalAddProject" class="btn btn-light btn-lg">
+        <button type="button" (click)="addModeProject()" data-toggle="modal" data-target="#modalAddProject" class="btn btn-light btn-lg btn-mob">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
           </svg> Dodaj Projekt
         </button>
-        <button [disabled]="!(deleteAllProject.length>0)" type="button" data-toggle="modal" data-target="#modalDeleteAllProject" class="btn btn-light btn-lg">Usuń Projekt</button>
-        <button [disabled]="!(deleteAllMember.length>0)" type="button" data-toggle="modal" data-target="#modalDeleteAllMember" class="btn btn-light btn-lg">Usuń Uczestnika</button>
+        <button [disabled]="!(deleteAllProject.length>0)" type="button" data-toggle="modal" data-target="#modalDeleteAllProject" class="btn btn-light btn-lg btn-mob">Usuń Projekt</button>
+        <button [disabled]="!(deleteAllMember.length>0)" type="button" data-toggle="modal" data-target="#modalDeleteAllMember" class="btn btn-light btn-lg btn-mob">Usuń Uczestnika</button>
       </div>
     </div>
-    <div>
-      <label class="d-none" for="searchInTable">Wyszukaj w tabeli</label>
-      <input id="searchInTable" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Wyszukaj w tabeli">
-    </div>
-    <table class="table table-dark">
-      <thead>
-      <tr>
-        <th scope="col" class="pointer" *ngIf="extendAllOrNot" (click)="extendAll()">Rozwiń
-        <th scope="col" class="pointer" *ngIf="!extendAllOrNot" (click)="extendAll()">Zwiń
-        <th scope="col">
-          <div class="form-check">
-            <input class="form-check-input position-static" type="checkbox" (click)="selectAllToDeleteProject()" [(ngModel)]="selectProject" value="option1" aria-label="...">
-          </div>
-        </th>
-        <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="idProject">#</th>
-        <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="nameProject">Nazwa Projektu</th>
-        <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="descriptionProject">Opis projektu</th>
-        <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="dataStart">Data rozpoczaczecia</th>
-        <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="dataEnd">Data zakonczenia</th>
-        <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="active">Aktywny</th>
-        <th scope="col">Edytuj</th>
-        <th scope="col" >Usuń</th>
-      </tr>
-      </thead>
-      <tbody>
-      <ng-container *ngFor="let project of projectList | filter:searchText">
+    <div class="table-responsive">
+      <div>
+        <label class="d-none" for="searchInTable">Wyszukaj w tabeli</label>
+        <input id="searchInTable" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Wyszukaj w tabeli">
+      </div>
+      <table class="table table-dark">
+        <thead>
         <tr>
-          <td *ngIf="!extendProject[project?.idProject]" (click)="extend(project?.idProject)">+</td>
-          <td *ngIf="extendProject[project?.idProject]" (click)="extend(project?.idProject)">-</td>
-          <td>
+          <th scope="col" class="pointer" *ngIf="extendAllOrNot" (click)="extendAll()">Rozwiń
+          <th scope="col" class="pointer" *ngIf="!extendAllOrNot" (click)="extendAll()">Zwiń
+          <th scope="col">
             <div class="form-check">
-              <input class="form-check-input position-static" id="{{project?.idProject}}" type="checkbox" (click)="addDeleteProject(project?.idProject)" [checked]='checkedProject[project?.idProject]' value="option1" aria-label="...">
+              <input class="form-check-input position-static" type="checkbox" (click)="selectAllToDeleteProject()" [(ngModel)]="selectProject" value="option1" aria-label="...">
             </div>
-          </td>
-          <th scope="row">{{project?.idProject}}</th>
-          <td>{{project?.nameProject}}</td>
-          <td>{{project?.descriptionProject}}</td>
-          <td>{{project?.dataStart}}</td>
-          <td>{{project?.dataEnd}}</td>
-          <td>{{project?.active | noData}}</td>
-          <td>
-            <button type="button" (click)="editItemProject(project)" data-toggle="modal" data-target="#modalAddProject" class="btn btn-light btn-sm">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-              </svg>
-              Edytuj
-            </button>
-          </td>
-          <td>
-            <button type="button" (click)="removeItemProject(project)" data-toggle="modal" data-target="#modalDeleteProject" class="btn btn-light btn-sm">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
-              Usuń
-            </button>
-          </td>
+          </th>
+          <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="idProject">#</th>
+          <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="nameProject">Nazwa Projektu</th>
+          <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="descriptionProject">Opis projektu</th>
+          <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="dataStart">Data rozpoczaczecia</th>
+          <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="dataEnd">Data zakonczenia</th>
+          <th scope="col" class="pointer" [appSort]="projectList" data-order="desc" data-name="active">Aktywny</th>
+          <th scope="col">Edytuj</th>
+          <th scope="col" >Usuń</th>
         </tr>
-        <tr *ngIf="extendProject[project?.idProject]">
-          <td colspan=10>
-            <div class="table-responsive">
-              <div>
-                <label class="d-none" for="searchInTable">Wyszukaj w tabeli</label>
-                <input id="searchInCoursesTable{{project?.idProject}}" class="form-control" type="text" name="search" [(ngModel)]="searchInProject" autocomplete="off" placeholder="Wyszukaj w tabeli">
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let project of projectList | filter:searchText">
+          <tr>
+            <td *ngIf="!extendProject[project?.idProject]" (click)="extend(project?.idProject)">+</td>
+            <td *ngIf="extendProject[project?.idProject]" (click)="extend(project?.idProject)">-</td>
+            <td>
+              <div class="form-check">
+                <input class="form-check-input position-static" id="{{project?.idProject}}" type="checkbox" (click)="addDeleteProject(project?.idProject)" [checked]='checkedProject[project?.idProject]' value="option1" aria-label="...">
               </div>
-              <table class="table table-secondary">
-                <thead>
-                <tr>
-                  <th scope="col">
-                    <div class="form-check">
-                      <input class="form-check-input position-static" type="checkbox" (click)="selectAllToDeleteMember(project?.idProject)" [(ngModel)]="selectMember[project?.idProject]" value="option1" aria-label="...">
-                    </div>
-                  </th>
-                  <th scope="col" class="pointer" [appSort]="saveToProject" data-order="desc" data-name="member.idMember">#</th>
-                  <th scope="col" class="pointer" [appSort]="saveToProject" data-order="desc" data-name="member.basicInformation.name">Name </th>
-                  <th scope="col" class="pointer" [appSort]="saveToProject" data-order="desc" data-name="member.basicInformation.surname">Surname</th>
-                  <th scope="col" class="pointer">Edytuj</th>
-                  <th scope="col" class="pointer">Usuń</th>
-                </tr>
-                </thead>
-                <tbody>
-                <ng-container *ngFor="let member of saveToProject | filter:searchInProject">
-                  <tr  *ngIf="member?.project?.idProject == project?.idProject">
-                    <td>
+            </td>
+            <th scope="row">{{project?.idProject}}</th>
+            <td>{{project?.nameProject}}</td>
+            <td>{{project?.descriptionProject}}</td>
+            <td>{{project?.dataStart}}</td>
+            <td>{{project?.dataEnd}}</td>
+            <td>{{project?.active | noData}}</td>
+            <td>
+              <button type="button" (click)="editItemProject(project)" data-toggle="modal" data-target="#modalAddProject" class="btn btn-light btn-sm">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+                Edytuj
+              </button>
+            </td>
+            <td>
+              <button type="button" (click)="removeItemProject(project)" data-toggle="modal" data-target="#modalDeleteProject" class="btn btn-light btn-sm">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+                Usuń
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="extendProject[project?.idProject]">
+            <td colspan=10>
+              <div class="table-responsive">
+                <div>
+                  <label class="d-none" for="searchInTable">Wyszukaj w tabeli</label>
+                  <input id="searchInCoursesTable{{project?.idProject}}" class="form-control" type="text" name="search" [(ngModel)]="searchInProject" autocomplete="off" placeholder="Wyszukaj w tabeli">
+                </div>
+                <table class="table table-secondary">
+                  <thead>
+                  <tr>
+                    <th scope="col">
                       <div class="form-check">
-                        <input class="form-check-input position-static" type="checkbox" (click)="addDeleteMember(member?.member?.idMember, project?.idProject)" [checked]='checkedMember[member?.member?.idMember]' value="option1" aria-label="...">
+                        <input class="form-check-input position-static" type="checkbox" (click)="selectAllToDeleteMember(project?.idProject)" [(ngModel)]="selectMember[project?.idProject]" value="option1" aria-label="...">
                       </div>
-                    </td>
-                    <td>{{member?.member?.idMember}}</td>
-                    <td>{{member?.member?.basicInformation?.name}}</td>
-                    <td>{{member?.member?.basicInformation?.surname}}</td>
-                    <td>
-                      <button type="button" (click)="editItemMember(member)" data-toggle="modal" data-target="#modalAddMember" class="btn btn-light btn-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                        Edytuj
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" (click)="removeItemMember(member)" data-toggle="modal" data-target="#modalDeleteMember" class="btn btn-light btn-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                          <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                        Usuń
-                      </button>
-                    </td>
+                    </th>
+                    <th scope="col" class="pointer" [appSort]="saveToProject" data-order="desc" data-name="member.idMember">#</th>
+                    <th scope="col" class="pointer" [appSort]="saveToProject" data-order="desc" data-name="member.basicInformation.name">Name </th>
+                    <th scope="col" class="pointer" [appSort]="saveToProject" data-order="desc" data-name="member.basicInformation.surname">Surname</th>
+                    <th scope="col" class="pointer">Edytuj</th>
+                    <th scope="col" class="pointer">Usuń</th>
                   </tr>
-                </ng-container>
-                </tbody>
-              </table>
-              <div  *ngIf="(saveToProject | filter:searchInProject) as result">
-                <p class="alert alert-warning" *ngIf="result.length==0"> Brak wyników</p>
+                  </thead>
+                  <tbody>
+                  <ng-container *ngFor="let member of saveToProject | filter:searchInProject">
+                    <tr  *ngIf="member?.project?.idProject == project?.idProject">
+                      <td>
+                        <div class="form-check">
+                          <input class="form-check-input position-static" type="checkbox" (click)="addDeleteMember(member?.member?.idMember, project?.idProject)" [checked]='checkedMember[member?.member?.idMember]' value="option1" aria-label="...">
+                        </div>
+                      </td>
+                      <td>{{member?.member?.idMember}}</td>
+                      <td>{{member?.member?.basicInformation?.name}}</td>
+                      <td>{{member?.member?.basicInformation?.surname}}</td>
+                      <td>
+                        <button type="button" (click)="editItemMember(member)" data-toggle="modal" data-target="#modalAddMember" class="btn btn-light btn-sm">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                          </svg>
+                          Edytuj
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" (click)="removeItemMember(member)" data-toggle="modal" data-target="#modalDeleteMember" class="btn btn-light btn-sm">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Usuń
+                        </button>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  </tbody>
+                </table>
+                <div  *ngIf="(saveToProject | filter:searchInProject) as result">
+                  <p class="alert alert-warning" *ngIf="result.length==0"> Brak wyników</p>
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </ng-container>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
     <div  *ngIf="(projectList | filter:searchText) as result">
       <p class="alert alert-warning" *ngIf="result.length==0"> Brak wyników</p>
     </div> </div>

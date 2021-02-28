@@ -16,9 +16,9 @@ import {WebStarterDesc} from '../../model/message/web-starter-desc';
 export class AdminService {
 
   constructor(private http: HttpClient) { }
-  private url = "https://ue-form-backend-app.herokuapp.com/";
+  private url = 'http://localhost:8080/';
   public getAuth(): Observable<any> {
-    const url = 'http://localhost:8080/admin/basicauth';
+    const url = this.url + 'admin/basicauth';
     return this.http.get<any>(url);
   }
 

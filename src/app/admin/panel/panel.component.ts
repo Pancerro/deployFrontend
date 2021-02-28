@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../login/login-service/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-panel',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
   select: boolean[] = [true];
-  constructor() { }
+  constructor(private auth: AuthenticationService, private router: Router) { }
   ngOnInit() { }
 
   public viewSummary(): void {
@@ -31,8 +33,11 @@ export class PanelComponent implements OnInit {
     this.select = [];
     this.select[4] = true;
   }
-
-   scroll(id: string) {
+  public logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+  public scroll(id: string): void {
     const htmlElement = document.getElementById(id);
     htmlElement.scrollIntoView({behavior: 'smooth'});
    }

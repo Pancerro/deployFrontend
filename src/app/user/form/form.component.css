@@ -2,7 +2,7 @@
     margin-bottom: 20px;
     padding: 10px;
     color: black;
-    height: 900px;
+    height: 99%;
     overflow-y: auto;
 }
 
@@ -13,3 +13,4 @@
 .container {
     margin-top: 20px;
 }
+
