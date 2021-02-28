@@ -16,7 +16,8 @@ import {WebStarterDesc} from '../../model/message/web-starter-desc';
 export class AdminService {
 
   constructor(private http: HttpClient) { }
-  private url = 'http://localhost:8080/';
+  // private url = 'http://localhost:8080/';
+  private url = 'https://ue-form-backend-app.herokuapp.com/';
   public getAuth(): Observable<any> {
     const url = this.url + 'admin/basicauth';
     return this.http.get<any>(url);
@@ -26,11 +27,11 @@ export class AdminService {
   /// przepis na admin panel -- chyba
 
   public getActiveProject(): Observable<Project[]> {
-    const url = this.url+'member/active-project';
+    const url = this.url + 'member/active-project';
     return this.http.get<Project[]>(url);
   }
   public getUniversityCourses(): Observable<UniversityCourses[]> {
-    const url = this.url+'member/university-courses';
+    const url = this.url + 'member/university-courses';
     return this.http.get<UniversityCourses[]>(url);
   }
   public getUniversityDepartments(): Observable<UniversityDepartments[]> {

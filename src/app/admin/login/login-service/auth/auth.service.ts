@@ -19,7 +19,7 @@ export class AuthenticationService {
   }
 
   authenticationService(username: string, password: string) {
-    return this.http.get('http://localhost:8080/admin/basicauth',
+    return this.http.get('https://ue-form-backend-app.herokuapp.com/admin/basicauth',
       { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map(() => {
         this.username = username;
         this.password = password;
