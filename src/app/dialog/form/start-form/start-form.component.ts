@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Member} from '../../../model/member';
+import {Project} from "../../../model/project";
 
 @Component({
   selector: 'app-start-form',
@@ -9,6 +10,7 @@ import {Member} from '../../../model/member';
 export class StartFormComponent implements OnInit {
   constructor() { }
   @Input() member: Member;
+  @Input() project: Project;
   @Input() editMode: boolean;
   @Output() nextStep = new EventEmitter<number>();
   private step = 0;

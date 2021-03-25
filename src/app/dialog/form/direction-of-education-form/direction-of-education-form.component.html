@@ -1,33 +1,66 @@
 <form [formGroup]="directionOfEducationForm" class="form-group">
-  <div class="form-group">
+  <div *ngIf="directionOfEducationForm.get('nameUniversity').value === null || directionOfEducationForm.get('nameUniversity').value === 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'" class="form-group">
     <label> Nazwa Uczelni :</label>
-    <input type="text" formControlName="nameUniversity" class="form-control" name="nameUniversity" placeholder="Wpisz nazwe uczelni">
-    <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('nameUniversity').invalid && directionOfEducationForm.get('nameUniversity').touched">
-      Błąd przy nazwe uczelni
+    <select class="form-control form-control-xs" formControlName="nameUniversity">
+      <option [ngValue]="null">Wybierz jedno...</option>
+      <option [ngValue]="'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">Akademia Marynarki Wojennej im. Bohaterow Wasterpllatte</option>
+      <option [ngValue]="'Inne'">Inne</option>
+    </select>
+  </div>
+  <div *ngIf="directionOfEducationForm.get('nameUniversity').value !== null && directionOfEducationForm.get('nameUniversity').value !== 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'" class="form-group">
+    <label> Nazwa Uczelni :</label>
+    <select class="form-control form-control-xs" formControlName="nameUniversity" >
+      <option [ngValue]="null">Wybierz jedno...</option>
+      <option [ngValue]="'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">Akademia Marynarki Wojennej im. Bohaterow Wasterpllatte</option>
+      <option [selected]="true" [ngValue]="'Inne'">Inne</option>
+    </select>
+  </div>
+  <div *ngIf="directionOfEducationForm.get('nameUniversity').value !== null && directionOfEducationForm.get('nameUniversity').value !== 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">
+    <div  class="form-group">
+      <input type="text" formControlName="nameUniversity" class="form-control" name="nameUniversity" placeholder="Wpisz nazwe uczelni">
+      <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('nameUniversity').invalid && directionOfEducationForm.get('nameUniversity').touched">
+        Błąd przy nazwe uczelni
+      </div>
+    </div>
+    <div class="form-group">
+      <label> Wydział :</label>
+      <input type="text" formControlName="department" class="form-control" name="department" placeholder="Wpisz swoj wydzial">
+      <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('department').invalid && directionOfEducationForm.get('department').touched">
+        Błąd przy wydziele
+      </div>
+    </div>
+    <div class="form-group">
+      <label> Kierunek :</label>
+      <input type="text" formControlName="fieldOfStudy" class="form-control" name="fieldOfStudy" placeholder="Wpisz swoj kierunek">
+      <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('fieldOfStudy').invalid && directionOfEducationForm.get('fieldOfStudy').touched">
+        Błąd przy kiernku studiów
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label>Wydział:</label>
-    <select id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="department">
-      <option [ngValue]="null">Wybierz jedno...</option>
-      <option [ngValue]="'other'">Inne</option>
-      <option *ngFor="let department of departments" [ngValue]="department.nameDepartments">{{department?.shortcut}} - {{department?.nameDepartments}}</option>
-    </select>
-    <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('department').invalid && directionOfEducationForm.get('department').touched">
-      Błąd przy wydziele
+  <div *ngIf="directionOfEducationForm.get('nameUniversity').value === 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">
+    <div class="form-group">
+      <label>Wydział:</label>
+      <select id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="department">
+        <option [ngValue]="null">Wybierz jedno...</option>
+        <option [ngValue]="'other'">Inne</option>
+        <option *ngFor="let department of departments" [ngValue]="department.nameDepartments">{{department?.shortcut}} - {{department?.nameDepartments}}</option>
+      </select>
+      <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('department').invalid && directionOfEducationForm.get('department').touched">
+        Błąd przy wydziele
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label>Kierunek Studiów :</label>
-    <select id="propertyTypeFieldOfStudy" class="form-control form-control-xs" formControlName="fieldOfStudy">
-      <option [ngValue]="null">Wybierz jedno...</option>
-      <option [ngValue]="'other'">Inne</option>
-      <ng-container *ngFor="let field of courser">
-      <option *ngIf="field?.universityDepartments.nameDepartments == directionOfEducationForm.get('department').value" [ngValue]="field.nameCourses">{{field?.nameCourses}} - {{field?.universityDepartments.nameDepartments}}</option>
-      </ng-container>
-    </select>
-    <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('fieldOfStudy').invalid && directionOfEducationForm.get('fieldOfStudy').touched">
-      Błąd przy kiernku studiów
+    <div class="form-group">
+      <label>Kierunek Studiów :</label>
+      <select id="propertyTypeFieldOfStudy" class="form-control form-control-xs" formControlName="fieldOfStudy">
+        <option [ngValue]="null">Wybierz jedno...</option>
+        <option [ngValue]="'other'">Inne</option>
+        <ng-container *ngFor="let field of courser">
+        <option *ngIf="field?.universityDepartments.nameDepartments == directionOfEducationForm.get('department').value" [ngValue]="field.nameCourses">{{field?.nameCourses}} - {{field?.universityDepartments.nameDepartments}}</option>
+        </ng-container>
+      </select>
+      <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('fieldOfStudy').invalid && directionOfEducationForm.get('fieldOfStudy').touched">
+        Błąd przy kiernku studiów
+      </div>
     </div>
   </div>
   <div class="form-group">

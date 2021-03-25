@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-        <div class="col-sm-8">
+        <div *ngIf="startForm" class="col-sm-12">
             <div *ngIf="!errorDesc" class="card bg-light">
               <div *ngIf="loadingWebStarterDesc else loading">
                 <div [innerHTML]="webStarterDesc.subject | safeHtml" class="card-header"></div>
@@ -26,7 +26,12 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div *ngIf="startForm" class="col-sm-12">
+          <div class="card bg-light">
+            <button type="button" class="btn btn-danger h-100" (click)="startForm = false" >Rozpocznij wypelnienie formularza</button>
+          </div>
+        </div>
+        <div *ngIf="!startForm" class="col-sm-12">
             <div class="card bg-light">
                 <div class="card-header">Form EU</div>
                 <div class="card-body" *ngIf="formIsSend else loading">

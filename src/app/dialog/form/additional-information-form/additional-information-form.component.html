@@ -1,4 +1,3 @@
-
 <form [formGroup]="additionalInformationForm" class="form-group">
   <div class="form-check">
     <input class="form-check-input" formControlName="repeatYear" type="checkbox" [checked]="additionalInformationInput.repeatYear" id="repeatYear">
@@ -12,35 +11,70 @@
        Studiowanie innego kierunku
     </label>
   </div>
-  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
-    <label> Name University :</label>
-    <input type="text" formControlName="nameUniversity" class="form-control" name="nameUniversity" placeholder="Wpisz nazwe uczelni">
-    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('nameUniversity').invalid && additionalInformationForm.get('nameUniversity').touched">
-      Błąd przy nazwie uczelni
+  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="ml-3">
+    <div *ngIf="additionalInformationForm.get('nameUniversity').value === null || additionalInformationForm.get('nameUniversity').value === 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'" class="form-group">
+      <label> Nazwa Uczelni :</label>
+      <select class="form-control form-control-xs" formControlName="nameUniversity">
+        <option [ngValue]="null">Wybierz jedno...</option>
+        <option [ngValue]="'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">Akademia Marynarki Wojennej im. Bohaterow Wasterpllatte</option>
+        <option [ngValue]="'Inne'">Inne</option>
+      </select>
     </div>
-  </div>
-  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
-    <label>Wydział:</label>
-    <select  id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="department">
-      <option [ngValue]="null">Wybierz jedno...</option>
-      <option [ngValue]="'other'">Inny</option>
-      <option *ngFor="let department of departments" [ngValue]="department.nameDepartments">{{department?.shortcut}} - {{department?.nameDepartments}}</option>
-    </select>
-    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('department').invalid && additionalInformationForm.get('department').touched">
-      Błąd przy wydziele uczelni
+    <div *ngIf="additionalInformationForm.get('nameUniversity').value !== null && additionalInformationForm.get('nameUniversity').value !== 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'" class="form-group">
+      <label> Nazwa Uczelni :</label>
+      <select class="form-control form-control-xs" formControlName="nameUniversity" >
+        <option [ngValue]="null">Wybierz jedno...</option>
+        <option [ngValue]="'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">Akademia Marynarki Wojennej im. Bohaterow Wasterpllatte</option>
+        <option [selected]="true" [ngValue]="'Inne'">Inne</option>
+      </select>
     </div>
-  </div>
-  <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">
-    <label>Kierunek studiów:</label>
-    <select id="propertyTypeFieldOfStudy" class="form-control form-control-xs" formControlName="fieldOfStudy">
-      <option [ngValue]="null">Select one...</option>
-      <option [ngValue]="'other'">Other</option>
-      <ng-container *ngFor="let field of courser">
-        <option *ngIf="field?.universityDepartments.nameDepartments == additionalInformationForm.get('department').value" [ngValue]="field.nameCourses">{{field?.nameCourses}} - {{field?.universityDepartments.nameDepartments}}</option>
-      </ng-container>
-    </select>
-    <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('fieldOfStudy').invalid && additionalInformationForm.get('fieldOfStudy').touched">
-      Błąd przy kierunku studiów
+    <div *ngIf="additionalInformationForm.get('nameUniversity').value !== null && additionalInformationForm.get('nameUniversity').value !== 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">
+      <div  class="form-group">
+        <input type="text" formControlName="nameUniversity" class="form-control" name="nameUniversity" placeholder="Wpisz nazwe uczelni">
+        <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('nameUniversity').invalid && additionalInformationForm.get('nameUniversity').touched">
+          Błąd przy nazwe uczelni
+        </div>
+      </div>
+      <div class="form-group">
+        <label> Wydział :</label>
+        <input type="text" formControlName="department" class="form-control" name="department" placeholder="Wpisz swoj wydzial">
+        <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('department').invalid && additionalInformationForm.get('department').touched">
+          Błąd przy wydziele
+        </div>
+      </div>
+      <div class="form-group">
+        <label> Kierunek :</label>
+        <input type="text" formControlName="fieldOfStudy" class="form-control" name="fieldOfStudy" placeholder="Wpisz swoj kierunek">
+        <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('fieldOfStudy').invalid && additionalInformationForm.get('fieldOfStudy').touched">
+          Błąd przy kiernku studiów
+        </div>
+      </div>
+    </div>
+    <div *ngIf="additionalInformationForm.get('nameUniversity').value === 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">
+      <div class="form-group">
+        <label>Wydział:</label>
+        <select id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="department">
+          <option [ngValue]="null">Wybierz jedno...</option>
+          <option [ngValue]="'other'">Inne</option>
+          <option *ngFor="let department of departments" [ngValue]="department.nameDepartments">{{department?.shortcut}} - {{department?.nameDepartments}}</option>
+        </select>
+        <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('department').invalid && additionalInformationForm.get('department').touched">
+          Błąd przy wydziele
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Kierunek Studiów :</label>
+        <select id="propertyTypeFieldOfStudy" class="form-control form-control-xs" formControlName="fieldOfStudy">
+          <option [ngValue]="null">Wybierz jedno...</option>
+          <option [ngValue]="'other'">Inne</option>
+          <ng-container *ngFor="let field of courser">
+            <option *ngIf="field?.universityDepartments.nameDepartments == additionalInformationForm.get('department').value" [ngValue]="field.nameCourses">{{field?.nameCourses}} - {{field?.universityDepartments.nameDepartments}}</option>
+          </ng-container>
+        </select>
+        <div class="alert alert-warning mt-1" *ngIf="additionalInformationForm.get('fieldOfStudy').invalid && additionalInformationForm.get('fieldOfStudy').touched">
+          Błąd przy kiernku studiów
+        </div>
+      </div>
     </div>
   </div>
   <div *ngIf="additionalInformationForm.get('studyingAnotherDirection').value" class="form-group ml-3">

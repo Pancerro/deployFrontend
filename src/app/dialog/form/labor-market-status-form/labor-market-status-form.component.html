@@ -2,8 +2,13 @@
     <div class="form-group">
         <div class="form-check">
             <input class="form-check-input" formControlName="unemployedPerson" type="checkbox" [checked]="laborMarketStatusInput.unemployedPerson" id="unemployedPerson">
-            <label class="form-check-label" for="unemployedPerson">
+            <label class="form-check-label w-100" for="unemployedPerson" data-bs-toggle="tooltip" data-bs-placement="top" title="Oznacza osobę, która ukończyła 18 lat i nie uczy się w systemie dziennym, ponadto jest osobą  niezatrudnioną, nieprowadzącą działalności gospodarczej i niewykonującą innej pracy zarobkowej, zdolną i gotową do podjęcia zatrudnienia">
         Bezrobotny
+              <span class="float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+    </span>
       </label>
         </div>
         <div *ngIf="laborMarketStatusForm.get('unemployedPerson').value" class="form-check ml-3">
@@ -14,8 +19,13 @@
         </div>
         <div class="form-check">
             <input class="form-check-input" formControlName="professionallyInactive" type="checkbox" [checked]="laborMarketStatusInput.professionallyInactive" id="professionallyInactive">
-            <label class="form-check-label" for="professionallyInactive">
+            <label class="form-check-label w-100" for="professionallyInactive" data-bs-toggle="tooltip" data-bs-placement="top" title="To osoba pozostającą bez zatrudnienia (osoba w wieku 15-64 lata niezatrudniona, niewykonująca innej pracy zarobkowej, zdolna i gotowa do podjęcia zatrudnienia lub innej pracy zarobkowej w co najmniej połowie wymiaru czasu pracy), która jednocześnie nie zalicza się do kategorii bezrobotni.">
               Bierny zawodowo
+              <span class="float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+    </span>
       </label>
         </div>
         <div class="form-check">
@@ -45,8 +55,13 @@
         </div>
         <div *ngIf="laborMarketStatusForm.get('working').value" class="form-check ml-3">
             <input class="form-check-input" formControlName="selfEmployed" type="checkbox" [checked]="laborMarketStatusInput.selfEmployed" id="selfEmployed">
-            <label class="form-check-label" for="selfEmployed">
+            <label class="form-check-label w-100" for="selfEmployed" data-bs-toggle="tooltip" data-bs-placement="top" title="Osoba fizyczna prowadząca działalność gospodarczą nie zatrudniająca pracowników">
               Dzialanosc na wlasny rachunek
+              <span class="float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+    </span>
       </label>
         </div>
         <div *ngIf="laborMarketStatusForm.get('working').value" class="form-check ml-3">
@@ -57,14 +72,24 @@
         </div>
         <div *ngIf="laborMarketStatusForm.get('working').value" class="form-check ml-3">
             <input class="form-check-input" formControlName="employedInBigEnterprise" type="checkbox" [checked]="laborMarketStatusInput.employedInBigEnterprise" id="employedInBigEnterprise">
-            <label class="form-check-label" for="employedInBigEnterprise">
+            <label class="form-check-labe w-100" for="employedInBigEnterprise" data-bs-toggle="tooltip" data-bs-placement="top" title=" Osoba pracująca w przedsiębiorstwie zatrudniającym powyżej 249 pracowników">
               Zatrudniony w duzym przedsiobiorstwie
+              <span class="float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+    </span>
     </label>
         </div>
         <div *ngIf="laborMarketStatusForm.get('working').value" class="form-check ml-3">
             <input class="form-check-input" formControlName="employedInGovernmentAdministration" type="checkbox" [checked]="laborMarketStatusInput.employedInGovernmentAdministration" id="employedInGovernmentAdministration">
-            <label class="form-check-label" for="employedInGovernmentAdministration">
+            <label class="form-check-label w-100" for="employedInGovernmentAdministration" data-bs-toggle="tooltip" data-bs-placement="top" title="Osoba zatrudniona w administracji rządowej i samorządowej oraz w ich jednostkach organizacyjnych">
               Zatrudniony w administracji rzadowej
+              <span class="float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+    </span>
     </label>
         </div>
         <div *ngIf="laborMarketStatusForm.get('working').value" class="form-check ml-3">
@@ -75,8 +100,13 @@
         </div>
         <div *ngIf="laborMarketStatusForm.get('working').value" class="form-check ml-3">
             <input class="form-check-input" formControlName="employedInNonGovernmentalOrganization" type="checkbox" [checked]="laborMarketStatusInput.employedInNonGovernmentalOrganization" id="employedInNonGovernmentalOrganization">
-            <label class="form-check-label" for="employedInNonGovernmentalOrganization">
+            <label class="form-check-label w-100" for="employedInNonGovernmentalOrganization" data-bs-toggle="tooltip" data-bs-placement="top" title="Osoba zatrudniona w organizacji pozarządowej w rozumieniu ustawy o działalności pożytku publicznego i wolontariacie">
               Zatrudniony w oragnizacji pozarzadowej
+              <span class="float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+    </span>
     </label>
         </div>
         <div *ngIf="laborMarketStatusForm.get('working').value" class="form-group ml-3">

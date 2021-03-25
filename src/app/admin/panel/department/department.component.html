@@ -262,22 +262,14 @@
                 <td *ngIf="!hideColumn[2]">{{departments?.shortcut}}</td>
               </tr>
               <tr>
-                <td colspan=7>
-                  <div class="table-responsive">
-                    <table class="table table-secondary">
-                      <tbody>
-                      <ng-container *ngFor="let courses of universityCourses | filter:searchInCourses">
-                        <tr  *ngIf="courses?.universityDepartments?.idDepartments == departments?.idDepartments">
-                          <td *ngIf="!hideColumn[3]">{{courses?.idCourses}}</td>
-                          <td *ngIf="!hideColumn[4]">{{courses?.nameCourses}}</td>
-                        </tr>
-                      </ng-container>
-                      </tbody>
-                    </table>
-                  </div>
-                </td>
+                <ng-container *ngFor="let courses of universityCourses | filter:searchInCourses">
+                  <ng-container  *ngIf="courses?.universityDepartments?.idDepartments == departments?.idDepartments">
+                    <td *ngIf="!hideColumn[3] || !hideColumn[4]"></td>
+                    <td *ngIf="!hideColumn[3]">{{courses?.idCourses}}</td>
+                    <td *ngIf="!hideColumn[4]">{{courses?.nameCourses}}</td>
+                  </ng-container>
+                </ng-container>
               </tr>
-
             </ng-container>
             </tbody>
           </table>
@@ -298,7 +290,7 @@
                 <td *ngIf="!hideColumn[2]">{{departments?.shortcut}}</td>
               </tr>
               <tr>
-                <td colspan=7>
+                <td colspan=3>
                   <div class="table-responsive">
                     <table class="table table-secondary">
                       <tbody>

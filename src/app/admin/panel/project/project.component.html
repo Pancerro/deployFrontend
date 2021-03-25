@@ -282,31 +282,16 @@
                 <td *ngIf="!hideColumn[4]">{{project?.dataEnd}}</td>
                 <td *ngIf="!hideColumn[5]">{{project?.active | noData}}</td>
               </tr>
-              <tr>
-                <td colspan=10>
-                  <div class="table-responsive">
-                    <table class="table table-secondary">
-                      <thead>
-                      <tr>
-
-                      </tr>
-                      </thead>
-                      <tbody>
                       <ng-container *ngFor="let member of saveToProject | filter:searchInProject">
                         <tr  *ngIf="member?.project?.idProject == project?.idProject">
-                          <td *ngIf="!hideColumn[6]">{{member?.member?.idMember}}</td>
-                          <td *ngIf="!hideColumn[7]">{{member?.member?.basicInformation?.name}}</td>
-                          <td *ngIf="!hideColumn[8]">{{member?.member?.basicInformation?.surname}}</td>
+                          <td colspan="2" *ngIf="!hideColumn[6]">{{member?.member?.idMember}}</td>
+                          <td colspan="2" *ngIf="!hideColumn[7]">{{member?.member?.basicInformation?.name}}</td>
+                          <td colspan="2" *ngIf="!hideColumn[8]">{{member?.member?.basicInformation?.surname}}</td>
                         </tr>
                       </ng-container>
-                      </tbody>
-                    </table>
                     <div  *ngIf="(saveToProject | filter:searchInProject) as result">
                       <p class="alert alert-warning" *ngIf="result.length==0"> No results</p>
                     </div>
-                  </div>
-                </td>
-              </tr>
             </ng-container>
             </tbody>
           </table>
@@ -336,11 +321,6 @@
                 <td colspan=10>
                   <div class="table-responsive">
                     <table class="table table-secondary">
-                      <thead>
-                      <tr>
-
-                      </tr>
-                      </thead>
                       <tbody>
                       <ng-container *ngFor="let member of saveToProject | filter:searchInProject">
                         <tr  *ngIf="member?.project?.idProject == project?.idProject">

@@ -48,6 +48,7 @@
             Filtruj po...
           </button>
           <div class="dropdown-menu" style="overflow-x: scroll; width:300px" aria-labelledby="dropdownFiltr">
+            <a class="dropdown-item" (click)="filterTable('project.idProject')">Id Project</a>
             <a class="dropdown-item" (click)="filterTable('basicInformation.name')">Imie</a>
             <a class="dropdown-item" (click)="filterTable('basicInformation.surname')">Nazwisko</a>
             <a class="dropdown-item" (click)="filterTable('basicInformation.pesel')">Pesel</a>
@@ -126,6 +127,7 @@
         <th scope="col" class="pointer" [appSort]="member" data-order="desc" data-name="basicInformation.name">Imie</th>
         <th scope="col" class="pointer" [appSort]="member" data-order="desc" data-name="basicInformation.surname">Nazwisko</th>
         <th scope="col" class="pointer" [appSort]="member" data-order="desc" data-name="basicInformation.pesel">Pesel</th>
+        <th scope="col" class="pointer" [appSort]="member" data-order="desc" data-name="project.idProject">Projekt</th>
         <th scope="col">Edytuj</th>
         <th scope="col">Usuń</th>
       </tr>
@@ -144,6 +146,8 @@
         <td>{{member?.basicInformation.name | noData}}</td>
         <td>{{member?.basicInformation.surname | noData}}</td>
         <td>{{member?.basicInformation.pesel | noData}}</td>
+        <td>{{member?.project.idProject | noData}}</td>
+
         <td>
           <button type="button" (click)="editItem(member)" data-toggle="modal" data-target="#modalAdd" class="btn btn-light btn-sm">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -164,7 +168,7 @@
         </td>
       </tr>
       <tr *ngIf="extendMember[member?.idMember]">
-        <td colspan="8">
+        <td colspan="9">
           <div class="container">
             <div class="row">
               <div class="col border border-secondary">
@@ -291,7 +295,7 @@
 <!-- modal !-->
 <app-yes-or-not-modal [id]="'modalDeleteAll'" [title]="'Potwierdz'" [description]="'Czy jestes pewny ze chcesz usunąc wszystkich zaznaczonych uczestnikow?'" [background]="'bg-light'" (clickYes)="deleteAll()"></app-yes-or-not-modal>
 <app-yes-or-not-modal [id]="'modalDelete'" [title]="'Potwierdz'" [description]="'Czy jestes pewny ze chcesz usunąc uczestnika '+removeMember?.basicInformation.name+ ' ' +removeMember?.basicInformation.surname+' ?'" [background]="'bg-light'" (clickYes)="remove(removeMember?.idMember)"></app-yes-or-not-modal>
-<app-edit-member-modal [editMode]="editMode" [editMember]="editMember" [viewForm]="viewForm" (newMember)="addOrEdit()"></app-edit-member-modal>
+  <app-edit-member-modal [editMode]="editMode" [editMember]="editMember" [viewForm]="viewForm" (newMember)="addOrEdit()"></app-edit-member-modal>
 
 <div class="modal fade" id="modalExportTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -378,6 +382,10 @@
             <div class="form-check form-check-inline">
               <input [checked]='!hideColumn[3]' class="form-check-input" type="checkbox" (click)="hideExportColumn(3)">
               <label class="form-check-label">Pesel</label>
+            </div>
+            <div  class="form-check form-check-inline">
+              <input [checked]='!hideColumn[66]' class="form-check-input" type="checkbox" (click)="hideExportColumn(66)">
+              <label class="form-check-label">Projekt</label>
             </div>
             <div class="form-check form-check-inline">
               <input [checked]='!hideColumn[4]' class="form-check-input" type="checkbox" (click)="hideExportColumn(4)">
@@ -612,6 +620,7 @@
               <th *ngIf="!hideColumn[1]" scope="col">Imie</th>
               <th *ngIf="!hideColumn[2]" scope="col">Nazwisko</th>
               <th *ngIf="!hideColumn[3]" scope="col">Pesel</th>
+              <th *ngIf="!hideColumn[66]" scope="col">Projekt</th>
             </tr>
             </thead>
             <tbody>
@@ -621,9 +630,10 @@
                 <td *ngIf="!hideColumn[1]">{{member?.basicInformation.name}}</td>
                 <td *ngIf="!hideColumn[2]">{{member?.basicInformation.surname}}</td>
                 <td *ngIf="!hideColumn[3]">{{member?.basicInformation.pesel | noData}}</td>
+                <td *ngIf="!hideColumn[66]">{{member?.project.idProject}}</td>
               </tr>
               <tr *ngIf="!(hideColumn[60] && hideColumn[61] && hideColumn[62] && hideColumn[63] && hideColumn[64] && hideColumn[65])">
-                <td colspan="4">
+                <td colspan="5">
                   <div class="container">
                     <div class="row">
                       <div *ngIf="!(hideColumn[60] && hideColumn[62])" class="col border border-secondary" >
@@ -729,6 +739,7 @@
               <th *ngIf="!hideColumn[1]" scope="col">Imie</th>
               <th *ngIf="!hideColumn[2]" scope="col">Nazwisko</th>
               <th *ngIf="!hideColumn[3]" scope="col">Pesel</th>
+              <th *ngIf="!hideColumn[66]" scope="col">Projekt</th>
               <th *ngIf="!hideColumn[4]" scope="col">Numer_dowodu_osobistego</th>
               <th *ngIf="!hideColumn[5]" scope="col">Wiek</th>
               <th *ngIf="!hideColumn[6]" scope="col">Poziom_Wyksztalcenia</th >
@@ -799,6 +810,7 @@
               <td *ngIf="!hideColumn[1]">{{member?.basicInformation.name}}</td>
               <td *ngIf="!hideColumn[2]">{{member?.basicInformation.surname}}</td>
               <td *ngIf="!hideColumn[3]">{{member?.basicInformation.pesel | noData}}</td>
+              <td *ngIf="!hideColumn[66]">{{member?.project.idProject}}</td>
               <td *ngIf="!hideColumn[4]">{{member?.basicInformation.idNumber | noData}}</td>
               <td *ngIf="!hideColumn[5]">{{member?.basicInformation.age | noData}}</td>
               <td *ngIf="!hideColumn[6]">{{member?.basicInformation.education | noData}}</td>

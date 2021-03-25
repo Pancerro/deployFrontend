@@ -25,11 +25,51 @@
         Błąd przy osobie w niekorzystnej sytuacji
       </div>
     </div>
-
-    <div class="form-check">
+    <div class="overflow-auto statement">
+      <ol>
+        <li>
+          <span class="font-weight-bold">Oświadczam, że:</span>   <br>
+          -	Zapoznałem/am się z zasadami udziału w w/w projekcie i wyrażam zgodę na uczestnictwo w nim.  <br>
+          -	Zgodnie z wymogami jestem uprawniony do uczestnictwa w projekcie.  <br>
+          -	Zostałem/am poinformowany/na, że projekt jest współfinansowany ze środków Unii Europejskiej w ramach Programu Operacyjnego Wiedza Edukacja Rozwój 2014-2020 współfinansowanego ze środków Europejskiego Funduszu Społecznego.
+        </li>
+        <li>
+          <span class="font-weight-bold">Wyrażam zgodę na udział w postępowaniu rekrutacyjnym.</span>
+        </li>
+        <li>
+          <span class="font-weight-bold">Odnośnie gromadzenia i przetwarzania danych osobowych:</span>   <br>
+          W celu potwierdzenia kwalifikowalności wydatków w projekcie moje dane osobowe takie jak imię (imiona), nazwisko PESEL, nr projektu, data rozpoczęcia udziału w projekcie, data zakończenia udziału w projekcie, kod tytułu ubezpieczenia, wysokość składki z tytułu ubezpieczenia zdrowotnego, wysokość składki z tytułu ubezpieczenia wypadkowego mogą być przetwarzane w zbiorze „Zbiór danych osobowych z ZUS”, którego administratorem jest minister właściwy do spraw rozwoju regionalnego. Przetwarzanie moich danych osobowych jest zgodne z prawem i spełnia warunki, o których mowa art. 6 ust. 1 lit. c oraz art. 9 ust. 2 lit. g Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 – dane osobowe są niezbędne dla realizacji Programu Operacyjnego Wiedza Edukacja Rozwój 2014-2020 (PO WER) na podstawie :
+          <ol>
+            <li>
+              rozporządzenia Parlamentu Europejskiego i Rady (UE) nr 1303/2013 z dnia
+              17 grudnia 2013 r. ustanawiającego wspólne przepisy dotyczące Europejskiego Funduszu Rozwoju Regionalnego, Europejskiego Funduszu Społecznego, Funduszu Spójności, Europejskiego Funduszu Rolnego na rzecz Rozwoju Obszarów Wiejskich oraz Europejskiego Funduszu Morskiego i Rybackiego oraz ustanawiającego przepisy ogólne dotyczące Europejskiego Funduszu Rozwoju Regionalnego, Europejskiego Funduszu Społecznego, Funduszu Spójności i Europejskiego Funduszu Morskiego i Rybackiego oraz uchylającego rozporządzenie Rady (WE) nr 1083/2006,
+            </li>
+            <li>
+              rozporządzenia Parlamentu Europejskiego i Rady (UE) nr 1304/2013 z dnia
+              17 grudnia 2013 r. w sprawie Europejskiego Funduszu Społecznego i uchylającego rozporządzenie Rady (WE) nr 1081/2006,
+            </li>
+            <li>
+              ustawy z dnia 11 lipca 2014 r. o zasadach realizacji programów w zakresie polityki spójności finansowanych w perspektywie finansowej 2014–2020 (Dz. U. z 2017 r. poz. 1460, z późn. zm.),
+            </li>
+            <li>
+              ustawy z dnia 13 października 1998 r. o systemie ubezpieczeń społecznych (Dz. U. z  2017 r. poz. 1778, z późn. zm.).
+              Moje dane osobowe zostały powierzone do przetwarzania Instytucji Pośredniczącej - Narodowe Centrum Badań i Rozwoju beneficjentowi realizującemu projekt  - Akademii Marynarki Wojennej im. Bohaterów Westerplatte w Gdyni oraz podmiotom, które na zlecenie beneficjenta uczestniczą w realizacji projektu. Moje dane osobowe mogą zostać przekazane podmiotom realizującym badania ewaluacyjne na zlecenie Instytucji Zarządzającej, Instytucji Pośredniczącej lub beneficjenta.  Moje dane osobowe mogą zostać również powierzone specjalistycznym firmom, realizującym na zlecenie Instytucji Zarządzającej, Instytucji Pośredniczącej oraz beneficjenta kontrole i audyt w ramach PO WER.
+                <br>
+                -	Wyrażam dobrowolnie zgodę na przetwarzanie moich danych osobowych przez Akademię Marynarki Wojennej im. Bohaterów Westerplatte lub podmiot przez nie upoważniony do celów sprawozdawczych z realizacji działań projektowych, w których brałem/am udział oraz monitoringu i ewaluacji projektu.
+                <br>
+                -	Oświadczam, że zostałem/am poinformowany/na o prawie dostępu do treści swoich danych osobowych oraz ich poprawiania.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <span class="font-weight-bold">Oświadczam, że w/w dane są zgodne z prawdą.</span>
+        </li>
+      </ol>
+    </div>
+    <div class="form-check ml-1">
       <input class="form-check-input" formControlName="statement" type="checkbox" [checked]="statementInput.statement" id="statement">
       <label class="form-check-label" for="statement">
-        ! ! ! !Regulamin! ! ! !
+          Akceptuje powyzszy regulamin
       </label>
     </div>
     <button type="button" (click)="previous()" class="btn btn-danger mt-1 mb-1" >Cofnij</button>

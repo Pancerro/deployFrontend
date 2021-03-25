@@ -30,7 +30,7 @@
                             <a class="list-group-item list-group-item-action" (click)="scroll('chartsProject')">Wykres</a>
                         </div>
                         <div *ngIf="select[4]" class="list-group">
-                            <a class="list-group-item list-group-item-action" (click)="scroll('options')">Opcje</a>
+                            <a class="list-group-item list-group-item-action" (click)="scroll('options')">Ustawienia</a>
                             <a class="list-group-item list-group-item-action" (click)="scroll('otherOptions')">Pozstałe Opcje</a>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <a class="nav-link" [ngClass]="{'active': select[3]}" (click)="viewProject()">Projekty</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" [ngClass]="{'active': select[4]}" (click)="viewOptions()">Opcje</a>
+                            <a class="nav-link" [ngClass]="{'active': select[4]}" (click)="viewOptions()">Ustawienia</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" (click)="logout()">Wyloguj</a>

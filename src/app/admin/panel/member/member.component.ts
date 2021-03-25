@@ -6,6 +6,7 @@ import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 import {first} from 'rxjs/operators';
 import {Project} from '../../../model/project';
 import {Charts} from '../../../model/charts';
+import {SaveMemberToProject} from '../../../model/save-member-to-project';
 
 @Component({
   selector: 'app-user',
@@ -34,7 +35,7 @@ export class MemberComponent implements OnInit, OnDestroy {
   public viewExportColumn = false;
   public checked = false;
   public select = false;
-  public member: Member[];
+  public member: Member[] = [];
   public viewForm = [true, false, false, false, false, false, false];
   public chartsAgeToPeople: Charts[] = [];
   public chartsSexInMember: Charts[] = [];
@@ -44,7 +45,7 @@ export class MemberComponent implements OnInit, OnDestroy {
   public extendAllOrNot = true;
   public exportType = null;
   public colorType = null;
-  private copyMember: Member[];
+  private copyMember: Member[] = [];
   public hideColumn = [];
   ngOnInit() {
     this.adminService.getActiveProject().pipe(first()).subscribe((project: Project[]) => {
@@ -255,11 +256,14 @@ export class MemberComponent implements OnInit, OnDestroy {
     }, () => this.viewEducationChart = false);
   }
   private getMember(): void {
-    this.adminService.getMember().subscribe((member: Member[]) => {
-        this.member = member;
-        this.copyMember = member;
+    this.adminService.getSaveToProject().subscribe((saveMemberToProjects: SaveMemberToProject[]) => {
+        saveMemberToProjects.forEach((member: SaveMemberToProject) => {
+          member.member.project = member.project;
+          this.member.push(member.member);
+          this.copyMember.push(member.member);
+      });
         if (this.select) {
-          this.deleteMember.push(member[member.length - 1].idMember);
+          this.deleteMember.push(saveMemberToProjects[saveMemberToProjects.length - 1].member.idMember);
         }
         this.viewTable = false;
       },

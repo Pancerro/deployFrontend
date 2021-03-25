@@ -27,7 +27,7 @@ export class DirectionOfEducationFormComponent implements OnInit, OnDestroy {
     if (this.editMode) { this.sub = this.editSubject.subscribe(() => this.sendForm()); }
     this.directionOfEducationForm = new FormGroup({
       idDirectionOfEducation: new FormControl(this.directionOfEducationInput.idDirectionOfEducation),
-      nameUniversity: new FormControl(this.directionOfEducationInput.nameUniversity, Validators.required),
+      nameUniversity: new FormControl(this.directionOfEducationInput.nameUniversity),
       department: new FormControl(this.directionOfEducationInput.department, Validators.required),
       fieldOfStudy: new FormControl(this.directionOfEducationInput.fieldOfStudy, Validators.required),
       profile: new FormControl(this.directionOfEducationInput.profile, Validators.required),
