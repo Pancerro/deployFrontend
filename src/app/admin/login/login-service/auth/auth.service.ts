@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import {environment} from "../../../../../environments/environment";
 
 
 @Injectable({
@@ -19,7 +20,7 @@ export class AuthenticationService {
   }
 
   authenticationService(username: string, password: string) {
-    return this.http.get('http://localhost:8080/admin/basicauth',
+    return this.http.get(environment.url + 'admin/basicauth',
       { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map(() => {
         this.username = username;
         this.password = password;

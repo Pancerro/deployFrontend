@@ -9,6 +9,7 @@ import {UniversityDepartments} from '../../model/university-departments';
 import {SaveMemberToProject} from '../../model/save-member-to-project';
 import {AcceptEmail} from '../../model/message/accept-email';
 import {WebStarterDesc} from '../../model/message/web-starter-desc';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import {WebStarterDesc} from '../../model/message/web-starter-desc';
 export class AdminService {
 
   constructor(private http: HttpClient) { }
-  private url = 'http://localhost:8080/';
+  private url = environment.url;
   // private url = 'https://ue-form-backend-app.herokuapp.com/';
   public getAuth(): Observable<any> {
     const url = this.url + 'admin/basicauth';

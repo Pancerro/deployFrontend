@@ -6,6 +6,8 @@ import {UniversityCourses} from '../../model/university-courses';
 import {UniversityDepartments} from '../../model/university-departments';
 import {Project} from '../../model/project';
 import {WebStarterDesc} from '../../model/message/web-starter-desc';
+import {environment} from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ import {WebStarterDesc} from '../../model/message/web-starter-desc';
 export class FormService {
 
   constructor(private http: HttpClient) { }
-  private url = 'http://localhost:8080/';
+  private url = environment.url;
   // private url = 'https://ue-form-backend-app.herokuapp.com/';
   public sendForm(member: Member, idProject: number): Observable<any> {
     const url = this.url + 'member/form/' + idProject;
