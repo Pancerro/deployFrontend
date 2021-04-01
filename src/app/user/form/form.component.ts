@@ -45,6 +45,7 @@ export class FormComponent implements OnInit {
       this.formIsSend = true;
       },
       err => {
+        console.log(err);
         this.invalid = true;
         this.formIsSend = true;
       }, () =>  this.formIsSend = true);
