@@ -3,15 +3,15 @@
         <div *ngIf="startForm" class="col-sm-12">
             <div *ngIf="!errorDesc" class="card bg-light">
               <div *ngIf="loadingWebStarterDesc else loading">
-                <div [innerHTML]="webStarterDesc.subject | safeHtml" class="card-header"></div>
-                <div *ngIf="webStarterDesc.html" class="card-body">
-                    <h5 [innerHTML]="webStarterDesc.subject | safeHtml" class="card-title"></h5>
-                    <div [innerHTML]="webStarterDesc.text | safeHtml" class="card-text">
+                <div [innerHTML]="webStarterDesc?.subject | safeHtml" class="card-header"></div>
+                <div *ngIf="webStarterDesc?.html" class="card-body">
+                    <h5 [innerHTML]="webStarterDesc?.subject | safeHtml" class="card-title"></h5>
+                    <div [innerHTML]="webStarterDesc?.text | safeHtml" class="card-text">
                     </div>
                 </div>
-                <div *ngIf="!webStarterDesc.html" class="card-body">
-                  <h5 class="card-title"> {{webStarterDesc.subject}}</h5>
-                  <div class="card-text"> {{webStarterDesc.text}}
+                <div *ngIf="!webStarterDesc?.html" class="card-body">
+                  <h5 class="card-title"> {{webStarterDesc?.subject}}</h5>
+                  <div class="card-text"> {{webStarterDesc?.text}}
                   </div>
                 </div>
               </div>
@@ -21,14 +21,15 @@
             <div class="card-body">
               <h5 class="card-title">Wystąpił błąd</h5>
               <div class="card-text">
-                  Kod błedu: {{errorDesc}} Prosze o kontakt z administratorem!
+                  Kod błedu: {{errorDesc}}. Odswiez strone a jesli to nie pomoze to prosze o kontakt z administratorem!
+
               </div>
             </div>
           </div>
         </div>
         <div *ngIf="startForm" class="col-sm-12">
           <div class="card bg-light">
-            <button type="button" class="btn btn-danger h-100" (click)="startForm = false" >Rozpocznij wypelnienie formularza</button>
+            <button [disabled]="errorDesc" type="button" class="btn btn-danger h-100" (click)="startForm = false" >Rozpocznij wypelnienie formularza</button>
           </div>
         </div>
         <div *ngIf="!startForm" class="col-sm-12">

@@ -26,12 +26,13 @@ export class FormComponent implements OnInit {
   ngOnInit() {
     this.formService.getActiveProject().pipe(first()).subscribe((project: Project[]) => {
         this.activeProject = project;
-      });
+      }, err =>
+    this.errorDesc = err.statusText);
     this.formService.getWebStarterDesc().pipe(first()).subscribe((webStarterDesc: WebStarterDesc) => {
       this.webStarterDesc = webStarterDesc;
       this.loadingWebStarterDesc = true;
     }, err => {
-      this.errorDesc = err.response;
+      this.errorDesc = err.statusText;
       this.loadingWebStarterDesc = true;
     }, () => this.loadingWebStarterDesc = true);
     this.setMember();

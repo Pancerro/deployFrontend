@@ -4,7 +4,7 @@
     <select class="form-control form-control-xs" formControlName="nameUniversity">
       <option [ngValue]="null">Wybierz jedno...</option>
       <option [ngValue]="'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">Akademia Marynarki Wojennej im. Bohaterow Wasterpllatte</option>
-      <option [ngValue]="'Inne'">Inne</option>
+      <option [ngValue]="'Inne'">Inna Uczelnia</option>
     </select>
   </div>
   <div *ngIf="directionOfEducationForm.get('nameUniversity').value !== null && directionOfEducationForm.get('nameUniversity').value !== 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'" class="form-group">
@@ -12,7 +12,7 @@
     <select class="form-control form-control-xs" formControlName="nameUniversity" >
       <option [ngValue]="null">Wybierz jedno...</option>
       <option [ngValue]="'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">Akademia Marynarki Wojennej im. Bohaterow Wasterpllatte</option>
-      <option [selected]="true" [ngValue]="'Inne'">Inne</option>
+      <option [selected]="true" [ngValue]="'Inne'">Inna Uczelnia</option>
     </select>
   </div>
   <div *ngIf="directionOfEducationForm.get('nameUniversity').value !== null && directionOfEducationForm.get('nameUniversity').value !== 'Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'">
@@ -42,7 +42,7 @@
       <label>Wydział:</label>
       <select id="propertyTypeDepartment" class="form-control form-control-xs" formControlName="department">
         <option [ngValue]="null">Wybierz jedno...</option>
-        <option [ngValue]="'other'">Inne</option>
+        <option [ngValue]="'other'">Inny wydzial</option>
         <option *ngFor="let department of departments" [ngValue]="department.nameDepartments">{{department?.shortcut}} - {{department?.nameDepartments}}</option>
       </select>
       <div class="alert alert-warning mt-1" *ngIf="directionOfEducationForm.get('department').invalid && directionOfEducationForm.get('department').touched">
@@ -53,7 +53,7 @@
       <label>Kierunek Studiów :</label>
       <select id="propertyTypeFieldOfStudy" class="form-control form-control-xs" formControlName="fieldOfStudy">
         <option [ngValue]="null">Wybierz jedno...</option>
-        <option [ngValue]="'other'">Inne</option>
+        <option [ngValue]="'other'">Inny Kierunek</option>
         <ng-container *ngFor="let field of courser">
         <option *ngIf="field?.universityDepartments.nameDepartments == directionOfEducationForm.get('department').value" [ngValue]="field.nameCourses">{{field?.nameCourses}} - {{field?.universityDepartments.nameDepartments}}</option>
         </ng-container>

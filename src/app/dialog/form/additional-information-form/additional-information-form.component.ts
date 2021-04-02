@@ -28,7 +28,7 @@ export class AdditionalInformationFormComponent implements OnInit, OnDestroy {
       idAdditional: new FormControl(this.additionalInformationInput.idAdditional),
       repeatYear: new FormControl(this.additionalInformationInput.repeatYear),
       studyingAnotherDirection: new FormControl(this.additionalInformationInput.studyingAnotherDirection),
-      nameUniversity: new FormControl(this.additionalInformationInput.nameUniversity),
+      nameUniversity: new FormControl('Akademia Marynarki Wojennej im.Bohaterow Wasterpllatte'),
       department: new FormControl(this.additionalInformationInput.department),
       fieldOfStudy: new FormControl(this.additionalInformationInput.fieldOfStudy),
       profile: new FormControl(this.additionalInformationInput.profile),
