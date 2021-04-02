@@ -3,7 +3,7 @@ export enum Education {
   Podstawowe = 'Podstawowe',
   Ponadgimnazjalne = 'Ponadgimnazjalne',
   Wyzsze = 'Wyzsze',
-  NizszeNIzPodstawowe = 'Nizsze niz podstawowe',
+  NizszeNizPodstawowe = 'NizszeNizPodstawowe',
   Gimnazjalne = 'Gimnazjalne',
   Policealne = 'Policealne'
 }
