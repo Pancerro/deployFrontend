@@ -8,6 +8,7 @@
   <app-additional-information-form *ngIf="form[5]" (nextStep)="next($event)" [editMode]="editMode" [editSubject]="editSubject" (additionalInformationOutput)="addAdditionalInformation($event)" [additionalInformationInput]="member.additionalInformation" [courser]="universityCourses" [departments]="universityDepartments"></app-additional-information-form>
   <app-statement-form *ngIf="form[6]" (nextStep)="next($event)" [editMode]="editMode" [editSubject]="editSubject" (statementOutput)="addStatement($event)" (send)="sendForm($event)" [statementInput]="member.statement"></app-statement-form>
 </div>
+
 <ng-template #loading>
   <div class="text-center spinner-size">
     <div class="spinner-border " style="width: 1rem; height: 1rem;" role="status">
