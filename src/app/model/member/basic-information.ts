@@ -6,6 +6,6 @@ export interface BasicInformation {
   surname?: string;
   pesel?: string;
   idNumber?: string;
-  age?: number;
+  age?: string;
   education?: Education;
 }

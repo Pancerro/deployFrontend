@@ -175,7 +175,7 @@
                 <p class="font-weight-bold mt-1 text-primary">Podstawowe informacje</p>
                 <hr>
                 <p>Numer Dowodu: {{member?.basicInformation.idNumber | noData}}</p>
-                <p>Wiek: {{member?.basicInformation.age | noData}}</p>
+                <p>Data Urodzenia: {{member?.basicInformation.age | noData}}</p>
                 <p>Edukacja: {{member?.basicInformation.education | noData}}</p>
                 <p class="font-weight-bold mt-1 text-primary">Dane Kontaktowe</p>
                 <hr>
@@ -263,11 +263,11 @@
   </div>
   <h1>Wykresy: <button type="button" class="btn btn-light btn-sm" (click)="extendCharts()"><span *ngIf="viewChart">Ukryj</span><span *ngIf="!viewChart">Rozwin</span></button> </h1>
   <div *ngIf="viewChart">
-  <h5 id="chartsMemberAge" class="card-title">Wykres wieku osób: </h5>
+  <!--<h5 id="chartsMemberAge" class="card-title">Wykres wieku osób: </h5>
   <div *ngIf="!viewAgeChart else loading"  class="card-body line-chart-parent">
     <ngx-charts-bar-vertical [results]="chartsAgeToPeople" [xAxisLabel]="'Wiek'" [legendTitle]="'Wiek osob'" [yAxisLabel]="'Liczba uczestników'" [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [gradient]="true">
     </ngx-charts-bar-vertical>
-  </div>
+  </div>-->
   <h5 id="chartsMemberSex" class="card-title">Wykres plci osób: </h5>
   <div *ngIf="!viewSexChart else loading"  class="card-body line-chart-parent">
     <ngx-charts-bar-vertical [results]="chartsSexInMember" [xAxisLabel]="'Płec'" [legendTitle]="'Osoby o danej plci'" [yAxisLabel]="'Liczba osob'" [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [gradient]="true">
@@ -295,7 +295,7 @@
 <!-- modal !-->
 <app-yes-or-not-modal [id]="'modalDeleteAll'" [title]="'Potwierdz'" [description]="'Czy jestes pewny ze chcesz usunąc wszystkich zaznaczonych uczestnikow?'" [background]="'bg-light'" (clickYes)="deleteAll()"></app-yes-or-not-modal>
 <app-yes-or-not-modal [id]="'modalDelete'" [title]="'Potwierdz'" [description]="'Czy jestes pewny ze chcesz usunąc uczestnika '+removeMember?.basicInformation.name+ ' ' +removeMember?.basicInformation.surname+' ?'" [background]="'bg-light'" (clickYes)="remove(removeMember?.idMember)"></app-yes-or-not-modal>
-  <app-edit-member-modal [editMode]="editMode" [editMember]="editMember" [viewForm]="viewForm" (newMember)="addOrEdit()"></app-edit-member-modal>
+<app-edit-member-modal [editMode]="editMode" [editMember]="editMember" [viewForm]="viewForm" (newMember)="addOrEdit()"></app-edit-member-modal>
 
 <div class="modal fade" id="modalExportTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -641,7 +641,7 @@
                         <p class="font-weight-bold mt-1 text-primary">Podstawowe Informacje</p>
                         <hr>
                         <p *ngIf="!hideColumn[4]">Number Dowodu: {{member?.basicInformation.idNumber | noData}}</p>
-                        <p *ngIf="!hideColumn[5]">Wiek: {{member?.basicInformation.age | noData}}</p>
+                        <p *ngIf="!hideColumn[5]">Data Urodzenia: {{member?.basicInformation.age | noData}}</p>
                         <p *ngIf="!hideColumn[6]">Edukacja: {{member?.basicInformation.education | noData}}</p>
                         </div>
                         <div *ngIf="!hideColumn[62]">
@@ -741,7 +741,7 @@
               <th *ngIf="!hideColumn[3]" scope="col">Pesel</th>
               <th *ngIf="!hideColumn[66]" scope="col">Projekt</th>
               <th *ngIf="!hideColumn[4]" scope="col">Numer_dowodu_osobistego</th>
-              <th *ngIf="!hideColumn[5]" scope="col">Wiek</th>
+              <th *ngIf="!hideColumn[5]" scope="col">Data Urodzenia</th>
               <th *ngIf="!hideColumn[6]" scope="col">Poziom_Wyksztalcenia</th >
 
               <th *ngIf="!hideColumn[7]" scope="col">Ulica</th>

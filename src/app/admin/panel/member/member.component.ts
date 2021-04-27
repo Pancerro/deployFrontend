@@ -256,6 +256,7 @@ export class MemberComponent implements OnInit, OnDestroy {
     }, () => this.viewEducationChart = false);
   }
   private getMember(): void {
+    this.member = [];
     this.adminService.getSaveToProject().subscribe((saveMemberToProjects: SaveMemberToProject[]) => {
         saveMemberToProjects.forEach((member: SaveMemberToProject) => {
           member.member.project = member.project;

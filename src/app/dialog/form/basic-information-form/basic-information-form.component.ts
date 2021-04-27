@@ -20,6 +20,7 @@ export class BasicInformationFormComponent implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
   public enumEducation = Education;
   public basicInformationForm: FormGroup;
+  public today = new Date();
   ngOnInit() {
     if (this.editMode) { this.sub = this.editSubject.subscribe(() => this.sendForm()); }
     this.basicInformationForm = new FormGroup({
@@ -29,7 +30,7 @@ export class BasicInformationFormComponent implements OnInit, OnDestroy {
       // tslint:disable-next-line:max-line-length
       pesel: new FormControl(this.basicInformationInput.pesel, [ Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('[0-9]+')]),
       idNumber: new FormControl(this.basicInformationInput.idNumber, Validators.required),
-      age: new FormControl(this.basicInformationInput.age, [ Validators.min(0), Validators.max(130), Validators.pattern(/^[0-9]\d*$/)]),
+      age: new FormControl(this.basicInformationInput.age,  Validators.required),
       education: new FormControl(this.basicInformationInput.education, Validators.required)
     });
   }

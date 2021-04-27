@@ -28,10 +28,10 @@
     </div>
   </div>
   <div class="form-group">
-    <label> Wiek :</label>
-    <input type="text" formControlName="age" class="form-control" name="age" placeholder="Wpisz swój wiek">
+    <label> Data Urodzenia :</label>
+    <input type="date" formControlName="age" max="{{today|date:'yyyy-MM-dd'}}" class="form-control" name="age" placeholder="Wpisz date urodzenia">
     <div class="alert alert-warning mt-1" *ngIf="basicInformationForm.get('age').invalid && basicInformationForm.get('age').touched">
-      Błąd przy wieku
+      Błąd przy dacie urodzenia
     </div>
   </div>
   <div class="form-group">
