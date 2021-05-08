@@ -295,9 +295,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
     this.viewChart = !this.viewChart;
   }
   private getCharts(): void {
-    console.log('xd')
     this.adminService.getChartsCourses().subscribe((chart: Charts[]) => {
-      console.log(chart);
       this.chartsCoursesInDepartments = chart;
       this.viewChartCoursesInDepartments = false;
     }, err => {
