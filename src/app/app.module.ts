@@ -9,21 +9,21 @@ import { AdminModule } from './admin/admin.module';
 import { MemberModule } from './user/member.module';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-    ],
+  declarations: [
+    AppComponent,
+  ],
 
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        AdminModule,
-        MemberModule,
-    ],
-    providers: [],
-    exports: [
-    ],
-    bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    AdminModule,
+    MemberModule,
+  ],
+  providers: [],
+  exports: [
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

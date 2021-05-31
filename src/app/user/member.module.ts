@@ -7,14 +7,14 @@ import { ModalModule } from '../dialog/modal.module';
 
 
 @NgModule({
-    declarations: [FormComponent],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        ModalModule,
-    ],
-    providers: [],
-    exports: [
-    ]
+  declarations: [FormComponent],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    ModalModule,
+  ],
+  providers: [],
+  exports: [
+  ]
 })
 export class MemberModule { }
